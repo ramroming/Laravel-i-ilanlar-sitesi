@@ -14,9 +14,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h3 class="card-title">Categories List</h3>
-                        <a class="btn btn-primary" href="{{route('adminCategoryAdd')}}">Add A Category</a>
+                        <div class="text-center"><a class="btn btn-primary" href="{{route('adminCategoryAdd')}}">Add A Category</a></div>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
@@ -38,7 +38,7 @@
                                     <td>{{ $rs->parent_id }}</td>
                                     <td>{{ $rs->title }}</td>
                                     <td>{{ $rs->status }}</td>
-                                    <td>Edit</td>
+                                    <td><a href="{{route('adminCategoryEdit',['id'=> $rs->id])}}">Edit</a></td>
                                     <td><a href="{{route('adminCategoryDelete',['id'=> $rs->id])}}" onclick="return confirm('Are you Sure?')">Delete</a></td>
                                 </tr>
                                 @endforeach

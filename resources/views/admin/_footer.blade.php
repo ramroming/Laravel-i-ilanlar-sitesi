@@ -2,8 +2,7 @@
 <!-- footer -->
 <!-- ============================================================== -->
 <footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a
-        href="https://www.wrappixel.com">WrapPixel</a>.
+
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->
@@ -42,4 +41,4 @@
 <script src="{{asset('assets')}}/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="{{asset('assets')}}/admin/dist/js/pages/chart/chart-page-init.js"></script>
 
-<
+

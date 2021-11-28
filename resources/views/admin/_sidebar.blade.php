@@ -17,6 +17,11 @@
                             class="mdi mdi-chart-bubble"></i><span
                             class="hide-menu">Category</span></a></li>
 
+                <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="{{route('admin_jobs')}}" aria-expanded="false"><i
+                            class="mdi mdi-briefcase"></i><span
+                            class="hide-menu">Job</span></a></li>
+
                 <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
                                             href="javascript:void(0)" aria-expanded="false"><i
                             class="mdi mdi-account-key"></i><span

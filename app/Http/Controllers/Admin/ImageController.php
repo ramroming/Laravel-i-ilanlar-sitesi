@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class ImageController extends Controller
 {
@@ -21,22 +26,31 @@ class ImageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create($job_id)
     {
-        //
+        $j = Job::find($job_id);
+        $images = DB::table('images')->where('job_id',"=",$job_id)->get();
+        return view('admin.image_add',['j' => $j,'images' => $images]);
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request,$job_id)
     {
-        //
+        $j = new Image();
+        $j -> job_id = $job_id;
+        $j -> title = $request -> input('title');
+        $j -> image = Storage::putFile('images', $request->file('image')); //file upload
+        $j -> save();
+
+        return redirect() -> route('admin_image_add', ['job_id' => $job_id]);
     }
 
     /**
@@ -77,10 +91,12 @@ class ImageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Image $image)
+    public function destroy(Image $image,$id,$job_id)
     {
-        //
+        $i = Image::find($id);
+        $i -> delete($id);
+        return redirect()->route('admin_image_add',['job_id' => $job_id]);
     }
 }

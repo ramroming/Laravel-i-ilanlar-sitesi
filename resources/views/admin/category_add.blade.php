@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Admin Panel Home Page')
+@section('title','Admin Panel Add Category Page')
 
 @section('content')
 
@@ -82,8 +82,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="border-top">
-                                        <div class="card-body">
+                                    <div class="border-top ">
+                                        <div class="card-body text-center">
                                             <button type="submit" class="btn btn-primary">Add Category</button>
                                         </div>
                                     </div>

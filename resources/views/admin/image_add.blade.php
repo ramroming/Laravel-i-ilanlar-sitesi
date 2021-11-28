@@ -1,156 +1,117 @@
-@extends('layouts.admin')
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>@yield('title')</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets')}}/admin/assets/images/favicon.png">
 
-@section('title','Admin Panel Add Job Page')
+    <link href="{{asset('assets')}}/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/assets/extra-libs/multicheck/multicheck.css">
+    <link href="{{asset('assets')}}/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/admin/dist/css/style.min.css" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
 
+                <div class="card-body">
 
-@section('javascript')
+                    <div class="card">
+                        <form class="form-horizontal" action="{{route('admin_image_store',['job_id'=> $j -> id])}}"
+                              method="post"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
 
-    <!-- include summernote css/js -->
-    <!-- include libraries(jQuery, bootstrap) -->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
-@endsection
-
-@section('content')
-
-
-  <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-
-                        <div class="card">
-                            <form class="form-horizontal" action="{{route('admin_job_store')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
-
-                                    <h4 class="card-title">Add Job</h4>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-end control-label col-form-label">
-                                            Category</label>
-                                        <div class="col-sm-9">
-                                            <select name="category_id" class="select2 form-select shadow-none"
-                                                    style="width: 100%; height:36px;">
-                                                @foreach($datalist as $d)
-                                                    <option value="{{$d->id}}">{{$d->title}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <h3 class="card-title">Add Image</h3>
+                                <h4 class="card-title text-primary">Job: {{$j->title}}</h4>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-sm-3 text-end control-label col-form-label">
+                                        Title</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="title" class="form-control">
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-end control-label col-form-label">
-                                            Title</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="title" class="form-control" id="lname"
-                                                   placeholder="Enter Title Here">
-                                        </div>
-
+                                <div class="form-group row">
+                                    <label
+                                        class="col-sm-3 text-end control-label col-form-label">
+                                        Image</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="image" class="form-control">
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-end control-label col-form-label">
-                                            Keywords</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="keywords" class="form-control" id="lname"
-                                                   placeholder="Keywords Here">
-                                        </div>
+                                <div class="border-top ">
+                                    <div class="card-body text-center">
+                                        <button type="submit" class="btn btn-primary">Add image</button>
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label
-                                            class="col-sm-3 text-end control-label col-form-label">
-                                            Description</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="description" class="form-control" id="lname"
-                                                   placeholder="Description Here">
-                                        </div>
-                                    </div>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Title(s)</th>
+                                            <th>Image</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($images as $i)
 
-                                    <div class="form-group row">
-                                        <label
-                                            class="col-sm-3 text-end control-label col-form-label">
-                                           Slug</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="slug" class="form-control"
-                                                   placeholder="Slug Here">
-                                        </div>
-                                    </div>
+                                            <tr>
+                                                <td>{{ $i->id }}</td>
+                                                <td>{{ $i->title }}</td>
 
+                                                <td>
+                                                    @if($i -> image)
+                                                        <img src="{{Storage::url($i->image)}}" height="60"
+                                                             alt="job-image">
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('admin_image_delete',['id'=> $i->id,'job_id'=>$j -> id])}}"
+                                                       onclick="return confirm('Record will be deleted ! Are you Sure?')"><i
+                                                            class=" fa-2x fas fa-trash-alt"></i></a></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
 
-                                    <div class="form-group row">
-                                        <label for="detail" class="col-sm-3 text-end control-label col-form-label">
-                                            Detail</label>
-                                        <div class="col-sm-9">
-                                            <textarea id="detail" name="detail">{{$d->detail}}</textarea>
-                                            <script>
-                                                $('#detail').summernote({
-                                                    tabsize: 2,
-                                                    height: 300
-                                                });
-                                            </script>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label
-                                            class="col-sm-3 text-end control-label col-form-label">
-                                            Salary</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="salary" class="form-control"
-                                                   placeholder="Enter Salary Here">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 text-end control-label col-form-label">
-                                            Status</label>
-                                        <div class="col-md-9">
-                                            <select name="status" class="select2 form-select shadow-none"
-                                                    style="width: 100%; height:36px;">
-                                                <option selected="selected">True</option>
-                                                <option>False</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label
-                                            class="col-sm-3 text-end control-label col-form-label">
-                                            Image</label>
-                                        <div class="col-sm-9">
-                                            <input type="file" name="image" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="border-top ">
-                                        <div class="card-body text-center">
-                                            <button type="submit" class="btn btn-primary">Add Job</button>
-                                        </div>
-                                    </div>
+                                    </table>
 
                                 </div>
-                            </form>
 
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
-@endsection
+</div>
+
+
+</body>
+</html>

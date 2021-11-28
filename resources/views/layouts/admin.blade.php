@@ -29,6 +29,7 @@
 <![endif]-->
     @yield('css')
     @yield('javascript')
+
 </head>
 <body>
 <!-- Preloader - style you can find in spinners.css -->
@@ -47,7 +48,8 @@
 @include('admin._sidebar')
 <!-- Page wrapper  -->
 
-<div class="page-wrapper">
+{{--    added style to page wrapper to make page go all the way down--}}
+<div class="page-wrapper" style="min-height:100vh">
 
 @section('content')
 @show
