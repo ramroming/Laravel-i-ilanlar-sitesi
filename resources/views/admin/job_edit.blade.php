@@ -45,7 +45,9 @@
                                             <select name="category_id" class="select2 form-select shadow-none"
                                                     style="width: 100%; height:36px;">
                                                 @foreach($dataList as $d)
-                                                    <option value="{{$d->id}}"  {{ ($d-> id) == $j -> category_id ? "selected" : "" }} >{{$d->title}}</option>
+                                                    <option value="{{$d->id}}"  {{ ($d-> id) == $j -> category_id ? "selected" : "" }} >
+                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($d,$d->title)}}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

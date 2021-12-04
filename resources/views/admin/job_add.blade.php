@@ -45,7 +45,7 @@
                                             <select name="category_id" class="select2 form-select shadow-none"
                                                     style="width: 100%; height:36px;">
                                                 @foreach($datalist as $d)
-                                                    <option value="{{$d->id}}">{{$d->title}}</option>
+                                                    <option value="{{$d->id}}">  {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($d, $d->title)}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -93,7 +93,7 @@
 
                                     <div class="form-group row">
                                         <label for="detail" class="col-sm-3 text-end control-label col-form-label">
-                                            Detail</label>
+                                            Details</label>
                                         <div class="col-sm-9">
                                             <textarea id="detail" name="detail">{{$d->detail}}</textarea>
                                             <script>

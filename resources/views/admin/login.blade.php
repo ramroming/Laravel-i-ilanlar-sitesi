@@ -39,7 +39,7 @@
     <!-- ============================================================== -->
     <!-- Login box.scss -->
     <!-- ============================================================== -->
-    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark"  style="min-height:100vh">
         <div class="auth-box bg-dark border-top border-secondary">
             <div id="loginform">
                 <div class="text-center pt-3 pb-3">

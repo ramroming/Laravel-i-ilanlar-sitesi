@@ -15,12 +15,17 @@
                 <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                             href="{{route('adminCategory')}}" aria-expanded="false"><i
                             class="mdi mdi-chart-bubble"></i><span
-                            class="hide-menu">Category</span></a></li>
+                            class="hide-menu">Categories</span></a></li>
 
                 <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                             href="{{route('admin_jobs')}}" aria-expanded="false"><i
                             class="mdi mdi-briefcase"></i><span
-                            class="hide-menu">Job</span></a></li>
+                            class="hide-menu">Jobs</span></a></li>
+
+                <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="{{route('admin_settings')}}" aria-expanded="false"><i
+                            class="mdi mdi-settings"></i><span
+                            class="hide-menu">Settings</span></a></li>
 
                 <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
                                             href="javascript:void(0)" aria-expanded="false"><i

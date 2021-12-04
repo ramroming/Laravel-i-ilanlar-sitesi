@@ -32,7 +32,7 @@
                                             {{-- datalist has all the parent's (main categories)--}}
                                                 @foreach($dataList as $rs)
                                                     <option value="{{$rs->id}}"  {{ ($rs -> id) == $data -> parent_id ? "selected" : "" }} >
-                                                        {{$rs->title}} </option>
+                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}} </option>
                                                 @endforeach
                                             </select>
                                         </div>

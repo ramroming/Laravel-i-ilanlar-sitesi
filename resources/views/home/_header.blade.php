@@ -25,6 +25,7 @@
                             <li><a href="post-job.html">Post a Job</a></li>
                         </ul>
                     </li>
+                    @include('home._category')
                     <li class="has-children">
                         <a href="services.html">Pages</a>
                         <ul class="dropdown">
@@ -38,7 +39,7 @@
                             <li><a href="gallery.html">Gallery</a></li>
                         </ul>
                     </li>
-                    <li><a href="blog.html">Blog</a></li>
+{{--                    <li><a href="blog.html">Blog</a></li>--}}
                     <li><a href="contact.html">Contact</a></li>
                     <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
                     <li class="d-lg-none"><a href="login.html">Log In</a></li>

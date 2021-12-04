@@ -30,7 +30,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        $datalist= Category::all();
+//        $datalist= Category::all();
+        $datalist = Category::with('children')->get();
         return view('admin.job_add',['datalist' => $datalist]);
     }
 
@@ -79,7 +80,8 @@ class JobController extends Controller
     public function edit(Job $job, $id)
     {
         $j = Job::find($id);
-        $datalist= Category::all();
+//        $datalist= Category::all();
+        $datalist = Category::with('children')->get();
         return view("admin.job_edit",['j' => $j, 'dataList' => $datalist]);
     }
 
@@ -101,7 +103,10 @@ class JobController extends Controller
         $j -> user_id = Auth::id();
         $j -> status = $request -> input('status');
         $j -> salary = $request -> input('salary');
-        $j -> image = Storage::putFile('images', $request->file('image')); //file upload
+//        $j -> image = Storage::putFile('images', $request->file('image')); //file upload
+        if($request -> file('image')!=null){
+            $j -> image = Storage::putFile('images', $request->file('image')); //solution to hashName problem
+        }
         $j -> save();
 
         return redirect() -> route("admin_jobs");

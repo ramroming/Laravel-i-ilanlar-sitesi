@@ -19,7 +19,7 @@
                         <div class="text-center"><a class="btn btn-primary" href="{{route('admin_job_add')}}">Add A
                                 Job</a></div>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
+                            <table id="zero_config" class="table table-striped table-bordered ">
                                 <thead>
                                 <tr>
                                     <th>id</th>
@@ -39,7 +39,9 @@
 
                                     <tr>
                                         <td>{{ $j->id }}</td>
-                                        <td>{{ $j->category_id }}</td>
+                                        <td>
+                                            {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($j->category, $j->category->title)}}
+                                        </td>
                                         <td>{{ $j->title }}</td>
                                         <td>{{$j->salary}}</td>
                                         <td>
