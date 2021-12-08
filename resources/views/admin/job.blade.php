@@ -19,7 +19,7 @@
                         <div class="text-center"><a class="btn btn-primary" href="{{route('admin_job_add')}}">Add A
                                 Job</a></div>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered ">
+                            <table id="job_table" class="table table-striped table-bordered ">
                                 <thead>
                                 <tr>
                                     <th>id</th>
@@ -35,8 +35,6 @@
                                 </thead>
                                 <tbody>
                                 @foreach($joblist as $j)
-                                    <p></p>
-
                                     <tr>
                                         <td>{{ $j->id }}</td>
                                         <td>
@@ -58,26 +56,13 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                                <tfoot>
-
-                                </tfoot>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
+
     </div>
 
     <!-- ============================================================== -->
@@ -93,6 +78,6 @@
         /****************************************
          *       Basic Table                   *
          ****************************************/
-        $('#zero_config').DataTable();
+        $('#job_table').DataTable();
     </script>
 @endsection

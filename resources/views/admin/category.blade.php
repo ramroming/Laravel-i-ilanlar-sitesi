@@ -18,7 +18,7 @@
                         <h3 class="card-title">Categories List</h3>
                         <div class="text-center"><a class="btn btn-primary" href="{{route('adminCategoryAdd')}}">Add A Category</a></div>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered">
+                            <table id="cat_table" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th>id</th>
@@ -31,8 +31,6 @@
                                 </thead>
                                 <tbody>
                                 @foreach($dataList as $rs)
-                                    <p></p>
-
                                 <tr>
                                     <td>{{ $rs->id }}</td>
                                     <td>
@@ -51,21 +49,11 @@
                                 </tfoot>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
+
     </div>
 
     <!-- ============================================================== -->
@@ -81,6 +69,6 @@
         /****************************************
          *       Basic Table                   *
          ****************************************/
-        $('#zero_config').DataTable();
+        $('#cat_table').DataTable();
     </script>
 @endsection

@@ -1,21 +1,24 @@
+
 <!--Category nav-->
 
-@php
-   $parentCategories = \App\Http\Controllers\HomeController::categorylist()
-@endphp
 
-<li class="has-children">
-
-    <a>Categories</a>
-    <ul class="dropdown">
+<ul>
         @foreach($parentCategories as $rs)
-        <li>
-            <a style="font-weight:bold">{{$rs->title}} </a>
-                    @if(count($rs->children))
-                        @include('home._categorytree',['children' => $rs->children])
-                    @endif
-        </li>
+            @if(!count($rs->children))
+            <li><a href="#">{{$rs->title}}</a></li>
+            @endif
+            @if(count($rs->children))
+                <li class="dropdown"><a href="#"><span>{{$rs->title}}</span><i class="bi bi-chevron-right"></i></a>
+             @include('home._category',['parentCategories' => $rs->children])
+                </li>
+            @endif
         @endforeach
-    </ul>
+</ul>
 
-</li>
+
+
+
+
+
+
+
