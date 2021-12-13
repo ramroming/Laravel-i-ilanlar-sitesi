@@ -133,7 +133,7 @@
                                             class="col-sm-3 text-end control-label col-form-label">
                                             Image</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="image" class="form-control">
+                                            <input type="file" name="image" class="form-control" required>
                                         </div>
                                     </div>
 

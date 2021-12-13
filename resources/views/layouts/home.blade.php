@@ -32,8 +32,19 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('assets')}}/assets/css/style.css" rel="stylesheet">
+
+{{--    set icon on tab  --}}
+    <link rel="icon" href="{{asset('assets')}}/images/logo-search.png" type="image/x-icon" />
+
+
+<style>
+    .my-font{
+        font-family: "Nunito", sans-serif;
+    }
+</style>
+
 </head>
-<body id="top">
+<body class="my-font" id="top">
 
 <div id="overlayer"></div>
 <div class="loader">

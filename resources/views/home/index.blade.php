@@ -1,11 +1,10 @@
 @extends('layouts.home')
 
-@section('title', 'Laravel iş ilanlar sitesi')
-@section('description')
-    job portal site (iş ilanlar sitesi)
-@endsection
+@section('title', $setting->title)
+@section('description'){{$setting->description}}@endsection
 
-@section('keywords,jobs, employers, employee, work, portal')
+@section('keywords',$setting->keywords)
+
 
 @section('content')
     <!-- HOME -->

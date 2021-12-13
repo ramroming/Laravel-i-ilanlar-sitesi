@@ -1,3 +1,12 @@
+@php
+    $setting= \App\Http\Controllers\HomeController::getSetting()
+@endphp
+<style>
+   .my-info{
+        /*color: rgba(255, 255, 255, 0.5);*/
+       color: #89ba16;
+    }
+</style>
 <footer class="site-footer">
 
     <a href="#top" class="smoothscroll scroll-top">
@@ -6,10 +15,23 @@
 
     <div class="container">
         <div class="row mb-5">
+
             <div class="col-6 col-md-3 mb-4 mb-md-0">
-                <h3>Search Trending</h3>
+                <h3>Company</h3>
+                <ul class="list-unstyled my-info ">
+                    <li>{{$setting->company}}</li>
+                    <li>{{$setting->address}}</li>
+                    <li><strong>Phone:</strong> {{$setting->phone}}</li>
+                    <li><strong>Email:</strong> {{$setting->email}}</li>
+                    <li><strong>Fax:</strong> {{$setting->fax}}</li>
+                    <li><a href="{{route('about')}}">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <h3>Acount</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Web Design</a></li>
+                    <li><a href="{{route('adminLogin')}}">Login</a></li>
                     <li><a href="#">Graphic Design</a></li>
                     <li><a href="#">Web Developers</a></li>
                     <li><a href="#">Python</a></li>
@@ -17,15 +39,7 @@
                     <li><a href="#">CSS3</a></li>
                 </ul>
             </div>
-            <div class="col-6 col-md-3 mb-4 mb-md-0">
-                <h3>Company</h3>
-                <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Resources</a></li>
-                </ul>
-            </div>
+
             <div class="col-6 col-md-3 mb-4 mb-md-0">
                 <h3>Support</h3>
                 <ul class="list-unstyled">
@@ -37,11 +51,32 @@
             <div class="col-6 col-md-3 mb-4 mb-md-0">
                 <h3>Contact Us</h3>
                 <div class="footer-social">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-instagram"></span></a>
-                    <a href="#"><span class="icon-linkedin"></span></a>
+                    @if ($setting -> facebook != null) <a href="{{$setting -> facebook}}" target="_blank">
+                        <span class="icon-facebook "></span></a> @endif
+                    @if ($setting -> twitter != null) <a href="{{$setting -> twitter}}"  target="_blank">
+                        <span class="icon-twitter"></span></a> @endif
+                    @if ($setting -> instagram != null) <a href="{{$setting -> instagram}}" target="_blank" >
+                        <span class="icon-instagram"></span></a> @endif
+                    @if ($setting -> youtube != null) <a href="{{$setting -> youtube}}" target="_blank">
+                        <span class="icon-youtube"></span></a> @endif
+
+
+                        {{--                    <a href="#"><span class="icon-twitter"></span></a>--}}
+{{--                    <a href="#"><span class="icon-instagram"></span></a>--}}
+{{--                    <a href="#"><span class="icon-linkedin"></span></a>--}}
                 </div>
+            </div>
+        </div>
+
+        {{--        company name --}}
+
+        <div class="row text-center">
+            <div class="col-12">
+                <p class="copyright"><small>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved |
+                        {{$setting->company}}</small></p>
             </div>
         </div>
 
@@ -65,7 +100,6 @@
 <script src="{{asset('assets')}}/js/bootstrap-select.min.js"></script>
 
 <script src="{{asset('assets')}}/js/custom.js"></script>
-
 
 
 {{--form the new template--}}

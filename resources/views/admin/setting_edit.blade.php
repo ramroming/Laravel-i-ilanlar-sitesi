@@ -64,8 +64,8 @@
                                                         class="hidden-xs-down">About us</span></a></li>
                                             <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                                                     href="#contactPage"
-                                                                    role="tab"><span class="hidden-sm-up"></span> <span
-                                                        class="hidden-xs-down">Contact Page</span></a></li>
+                                                                    role="tab"><span class="hidden-sm-up"></span>
+                                                    <span class="hidden-xs-down">Contact Page</span></a></li>
                                             <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ref"
                                                                     role="tab"><span class="hidden-sm-up"></span> <span
                                                         class="hidden-xs-down">References</span></a></li>
@@ -323,7 +323,7 @@
                                     <script>
                                         $('#aboutus').summernote({
                                             tabsize: 2,
-                                            height: 100
+                                            height: 200
                                         });
                                         $('#references').summernote({
                                             tabsize: 2,
