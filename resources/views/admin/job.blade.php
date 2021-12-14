@@ -29,8 +29,7 @@
                                     <th>Image</th>
                                     <th>Images Gallery</th>
                                     <th>Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th colspan="2">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>

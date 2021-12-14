@@ -27,6 +27,11 @@
                             class="mdi mdi-settings"></i><span
                             class="hide-menu">Settings</span></a></li>
 
+                <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="{{route('admin_messages')}}" aria-expanded="false"><i
+                            class="mdi mdi-message"></i><span
+                            class="hide-menu">Contact messages</span></a></li>
+
                 <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
                                             href="javascript:void(0)" aria-expanded="false"><i
                             class="mdi mdi-account-key"></i>

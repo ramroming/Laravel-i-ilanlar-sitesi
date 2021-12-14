@@ -30,6 +30,7 @@
                         <div class="row form-group">
                             <h2 class="text-monospace text-secondary font-weight-bold">Contact Form</h2>
                         </div>
+                        @include('home.message')
                         <div class="row form-group">
                             <div class="col-md-12 mb-6 mb-md-0">
                                 <label class="text-black" for="name">Name</label>
