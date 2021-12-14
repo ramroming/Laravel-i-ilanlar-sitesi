@@ -9,7 +9,7 @@
     <meta name="description"
           content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>@yield('title')</title>
+    <title>Image Gallery</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets')}}/admin/assets/images/favicon.png">
 
@@ -54,7 +54,7 @@
                                         class="col-sm-3 text-end control-label col-form-label">
                                         Image</label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="image" class="form-control">
+                                        <input type="file" name="image" class="form-control" required>
                                     </div>
                                 </div>
 

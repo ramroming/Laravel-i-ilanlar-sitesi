@@ -34,7 +34,7 @@
                         <div class="row form-group">
                             <div class="col-md-12 mb-6 mb-md-0">
                                 <label class="text-black" for="name">Name</label>
-                                <input type="text" id="name" name="name" class="form-control">
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                         </div>
 

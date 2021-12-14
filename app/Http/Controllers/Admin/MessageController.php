@@ -70,11 +70,14 @@ class MessageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, Message $message,$id)
     {
-        //
+        $data = Message::find($id);
+        $data->note =$request->input('note');
+        $data->save();
+        return back()->with('success','Message updated!');
     }
 
     /**

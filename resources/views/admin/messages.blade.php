@@ -16,7 +16,11 @@
                 <div class="card">
                     <div class="card-body ">
                         <h3 class="card-title">Messages</h3>
-                        @include('home.message')
+
+                        <div class="card-body">
+                            @include('home.message')
+                        </div>
+
                         <div class="table-responsive">
                             <table id="job_table" class="table table-striped table-bordered ">
                                 <thead>
@@ -27,7 +31,8 @@
                                     <th>Phone</th>
                                     <th>Subject</th>
                                     <th>Message</th>
-                                    <th>Admin Note</th>
+                                    <th>Admin&nbsp;Note</th>
+                                    <th>Status</th>
                                     <th colspan="3">Actions</th>
                                 </tr>
                                 </thead>
@@ -41,10 +46,11 @@
                                         <td>{{$d->subject}}</td>
                                         <td>{{$d->message}}</td>
                                         <td>{{$d->note}}</td>
-                                        <td style="text-align: center"><a href="{{route('admin_message_edit',['id'=> $d->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100 height=700')">
-                                                <i class="fas fa-2x fa-edit"></i></a></td>
+                                        <td>{{$d->status}}</td>
+                                        <td style="text-align: center"><a href="{{route('admin_message_edit',['id'=> $d->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=800 height=700')">
+                                                <i class="fas fa-edit"></i></a></td>
                                         <td><a href="{{route('admin_message_delete',['id'=> $d->id])}}"
-                                               onclick="return confirm('Are you Sure?')">Delete Message</a></td>
+                                               onclick="return confirm('Are you Sure?')"> <i class="fas fa-trash"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

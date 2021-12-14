@@ -1,21 +1,21 @@
-<link rel="stylesheet" href="{{asset('assets')}}/css/style.css">
+<head>
 
-{{--    from new template!!!!!!!!!!!!--}}
-<!-- Vendor CSS Files -->
-<link href="{{asset('assets')}}/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="{{asset('assets')}}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <title>Message</title>
+    <link href="{{asset('assets')}}/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/assets/extra-libs/multicheck/multicheck.css">
+    <link href="{{asset('assets')}}/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets')}}/admin/assets/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="{{asset('assets')}}/admin/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]!-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-<!-- Template Main CSS File -->
-<link href="{{asset('assets')}}/assets/css/style.css" rel="stylesheet">
 
-{{--    set icon on tab  --}}
-<link rel="icon" href="{{asset('assets')}}/images/logo-search.png" type="image/x-icon"/>
-
+</head>
+<body>
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
@@ -29,11 +29,12 @@
 
                     <div class="card">
                         <form class="form-horizontal" action="{{route('admin_message_update',['id' => $data])}}"
-                              method="get" enctype="multipart/form-data">
+                              method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
 
                                 <h4 class="card-title">Message Details</h4>
+                                 @include('home.message')
 
                                 <div class="table-responsive">
                                     <table id="job_table" class="table table-striped table-bordered ">
@@ -64,22 +65,21 @@
                                         </tr>
                                         <tr>
                                             <th>Admin Note</th>
-                                            <td><textarea id="detail" name="detail">{{$data->note}}</textarea></td>
+                                            <td><textarea  name="note">{{$data->note}}</textarea></td>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                                <div class="border-top ">
-                                                    <div class="card-body text-center">
-                                                        <button type="submit" class="btn btn-primary">Update Message
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                        </tr>
-                                        </tbody>
+                                {{--      <tbody>--}}
+                                {{--      </tbody>--}}
 
                                     </table>
+
+                                    <div class="border-top ">
+                                        <div class="card-body text-center">
+                                            <button type="submit" class="btn btn-primary">Update Message
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
@@ -89,6 +89,5 @@
         </div>
     </div>
 </div>
-
-
+</body>
 

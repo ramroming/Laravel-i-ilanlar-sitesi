@@ -49,9 +49,9 @@
                                         <td style="text-align: center"><a href="{{route('admin_image_add',['job_id'=> $j->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100 height=700')">
                                                 <i class="fas fa-2x fa-images"></i></a></td>
                                         <td>{{ $j->status }}</td>
-                                        <td><a href="{{route('admin_job_edit',['id'=> $j->id])}}">Edit Job</a></td>
+                                        <td><a href="{{route('admin_job_edit',['id'=> $j->id])}}"> <i class="fas fa-edit"></i></a></td>
                                         <td><a href="{{route('admin_job_delete',['id'=> $j->id])}}"
-                                               onclick="return confirm('Are you Sure?')">Delete Job</a></td>
+                                               onclick="return confirm('Are you Sure?')"><i class="fas fa-trash"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
