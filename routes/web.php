@@ -30,6 +30,12 @@ Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/sendmessage',[HomeController::class,'sendmessage'])->name('sendmessage');
 
+// for slider to get to job ad
+Route::get('/job/{id}/{slug}',[HomeController::class,'job'])->name('job');
+
+//jobs from category list in nav
+Route::get('/categoryjobs/{id}/{slug}',[HomeController::class,'categoryjobs'])->name('categoryjobs');
+
 // admin login/logout routing
 Route::get('/admin/login',[HomeController::class, 'login'])->name('adminLogin');
 Route::post('/admin/loginCheck',[HomeController::class, 'loginCheck'])->name('adminLoginCheck');

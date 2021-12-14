@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Category;
+use App\Models\Job;
 use App\Models\Message;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -25,8 +27,37 @@ class HomeController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        return view(view: 'home.index', data: ['setting'=>$setting]);
+        $slider = Job::select('id','title','image','salary','slug')->limit(3)->get();
+        $data = [
+            'setting'=> $setting,
+             'slider' => $slider,
+            'page'=>'home',
+        ];
+        return view(view: 'home.index', data: $data);
     }
+
+    public function job($id,$slug)
+    {
+        $data = Job::find($id);
+        print_r($data);
+        exit();
+
+    }
+
+    public function categoryjobs($id,$slug)
+    {
+        $datalist = Job::where('category_id',$id)->get(); //using the model to get to data
+        $data = Category::find($id);
+//        print_r($data);
+//        exit();
+
+        //return total of jobs of the category by finding how many rows match with the category id
+        $count = (Job::where('category_id','=',$id))->count();
+
+        $count = (Job::all())->count();
+        return view(view: 'home.categoryjobs', data :['data' => $data, 'datalist' => $datalist, 'count' => $count]);
+    }
+
 
     public function login()
     {
@@ -36,7 +67,7 @@ class HomeController extends Controller
     public function aboutus()
     {
         $setting = Setting::first();
-        return view(view: 'home.about', data: ['setting'=>$setting]);
+        return view(view: 'home.about', data: ['setting' => $setting ]);
     }
     public function ref()
     {
