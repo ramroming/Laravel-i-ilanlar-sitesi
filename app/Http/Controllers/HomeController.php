@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Job;
 use App\Models\Message;
 use App\Models\Setting;
@@ -27,22 +28,62 @@ class HomeController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        $slider = Job::select('id','title','image','salary','slug')->limit(3)->get();
+        $slider = Job::select('id','title','image','salary','slug')->limit(4)->get();
+        $latest = Job::select('id','title','image','salary','slug','location')->limit(6)->orderByDesc('id')->get(); //latest jobs
         $data = [
             'setting'=> $setting,
              'slider' => $slider,
-            'page'=>'home',
+            'latest' => $latest,
+            'page'=>'home'
         ];
         return view(view: 'home.index', data: $data);
     }
 
-    public function job($id,$slug)
+    public function job($id)
     {
+        $data = Job::find($id);
+        $imagelist = Image::where('job_id',$id)->get(); //using the model to get to data
+//        print_r($data);
+//        exit();
+
+        return view(view: 'home.job_single', data :['data' => $data,'imagelist' => $imagelist]);
+
+    }
+
+    public function getjob(Request $request)
+    {
+        $search = $request->input('search');
+
+        $count =Job::where('title','like','%'.$search.'%')->get()->count();
+
+        if($count==1){
+            $data =Job::where('title','like','%'.$search.'%')->first();
+            return redirect()->route('job',['id'=>$data->id,'slug'=>$data->slug]);
+
+        }
+        else{
+            return redirect()->route('joblist',['search'=>$search]);
+        }
+
+
+    }
+
+    public function joblist($search){
+        $datalist= Job::where('title','like','%'.$search.'%')->get();
+        $count= Job::where('title','like','%'.$search.'%')->get()->count();
+        return view('home.search_jobs',['search'=>$search,'datalist'=>$datalist,'count'=>$count]);
+    }
+
+
+    public function apply($id)
+    {
+        echo "Apply for job<br>";
         $data = Job::find($id);
         print_r($data);
         exit();
 
     }
+
 
     public function categoryjobs($id,$slug)
     {

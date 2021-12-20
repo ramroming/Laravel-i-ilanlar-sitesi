@@ -18,7 +18,7 @@
                         <h3 class="card-title">Categories List</h3>
                         <div class="text-center"><a class="btn btn-primary" href="{{route('adminCategoryAdd')}}">Add A Category</a></div>
                         <div class="table-responsive">
-                            <table id="cat_table" class="table table-striped table-bordered">
+                            <table id="cat-table" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th>id</th>
@@ -28,6 +28,7 @@
                                     <th colspan="2">Actions</th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
                                 @foreach($dataList as $rs)
                                 <tr>
@@ -68,6 +69,6 @@
         /****************************************
          *       Basic Table                   *
          ****************************************/
-        $('#cat_table').DataTable();
+        $('#cat-table').DataTable();
     </script>
 @endsection

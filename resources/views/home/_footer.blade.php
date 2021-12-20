@@ -100,7 +100,7 @@
 <script src="{{asset('assets')}}/js/bootstrap-select.min.js"></script>
 
 <script src="{{asset('assets')}}/js/custom.js"></script>
-
+<script src="{{asset('assets')}}/js/quill.min.js"></script>
 
 {{--form the new template--}}
 <!-- Vendor JS Files -->
@@ -114,3 +114,8 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('assets')}}/assets/js/main.js"></script>
+
+
+
+
+

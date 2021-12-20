@@ -1,9 +1,6 @@
 @extends('layouts.home')
 
-@section('title', $data->title ." jobs list")
-@section('description'){{$data->description}}@endsection
-
-@section('keywords',$data->keywords)
+@section('title', $search ." jobs list")
 
 
 @section('content')
@@ -18,11 +15,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1 class="text-white font-weight-bold">{{$data->title}}</h1>
+                    <h1 class="text-white font-weight-bold">{{$search}}</h1>
                     <div class="custom-breadcrumbs" style="width:100vw">
                         <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
-                        <a href="{{route('home')}}">Jobs</a> <span class="mx-2 slash">/</span>
-                        <span class="text-white"><strong> {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($data, $data->title)}}</strong></span>
+                        <span class="text-white"><strong>{{$search}} Job List</strong></span>
                     </div>
                 </div>
             </div>
@@ -42,7 +38,7 @@
 
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
-                    <h2 class="section-title mb-2"> {{$data->title ." jobs list"}}</h2>
+                    <h2 class="section-title mb-2"> {{$search ." jobs list"}}</h2>
                 </div>
             </div>
 
@@ -80,7 +76,7 @@
 
             <div class="row pagination-wrap">
                 <div class="col-md-12 text-center text-md-left mb-4 mb-md-0">
-                    <span>Showing {{count($datalist)}} of {{$count}}  jobs on this website</span>
+                    <span>Showing {{$count}} - {{$search}} jobs </span>
                 </div>
 {{--                <div class="col-md-6 text-center text-md-right">--}}
 {{--                    <div class="custom-pagination ml-auto">--}}

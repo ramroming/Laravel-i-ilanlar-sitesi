@@ -26,6 +26,7 @@
                                     <th>Category</th>
                                     <th>Title(s)</th>
                                     <th>Salary</th>
+                                    <th>Location</th>
                                     <th>Image</th>
                                     <th>Images Gallery</th>
                                     <th>Status</th>
@@ -41,6 +42,7 @@
                                         </td>
                                         <td>{{ $j->title }}</td>
                                         <td>{{$j->salary}}</td>
+                                        <td>{{$j->location}}</td>
                                         <td>
                                             @if($j -> image)
                                                 <img src="{{Storage::url($j->image)}}" height="30" alt="job-image">

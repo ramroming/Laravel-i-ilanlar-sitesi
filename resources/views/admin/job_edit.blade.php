@@ -111,6 +111,28 @@
                                     <div class="form-group row">
                                         <label
                                             class="col-sm-3 text-end control-label col-form-label">
+                                            Location</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="location" class="form-control"
+                                                   value="{{$j->location}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-sm-3 text-end control-label col-form-label">
+                                            Slug</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="slug" class="form-control"
+                                                   value="{{$j->slug}}">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-sm-3 text-end control-label col-form-label">
                                             Image</label>
                                         <div class="col-sm-9">
                                             <input type="file" name="image" class="form-control">

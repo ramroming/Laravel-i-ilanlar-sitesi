@@ -30,8 +30,12 @@
     <link href="{{asset('assets')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{asset('assets')}}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+
     <!-- Template Main CSS File -->
     <link href="{{asset('assets')}}/assets/css/style.css" rel="stylesheet">
+
+{{--      took it for the gallery thing --}}
+    <link rel="stylesheet" href="{{asset('assets')}}/assets/css/quill.snow.css">
 
 {{--    set icon on tab  --}}
     <link rel="icon" href="{{asset('assets')}}/images/logo-search.png" type="image/x-icon" />
@@ -41,6 +45,19 @@
     .my-font{
         font-family: "Nunito", sans-serif;
     }
+
+
+    .single-carousel .owl-dots{
+        position:static !important;
+    }
+    .owl-dots {display: block !important;
+    }
+    .owl-dots .owl-dot { display: inline-block;
+        }
+
+    .single-carousel .owl-dots .owl-dot.active > span{
+        background-color:blue!important;
+    }
 </style>
 
 </head>
@@ -48,7 +65,7 @@
 
 <div id="overlayer"></div>
 <div class="loader">
-    <div class="spinner-border text-primary" role="status">
+    <div class="spinner-border text-secondary" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>

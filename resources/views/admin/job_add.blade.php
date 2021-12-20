@@ -115,6 +115,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-sm-3 text-end control-label col-form-label">
+                                            Location</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="location" class="form-control"
+                                                   placeholder="Enter location Here ex:Turkey">
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-group row">
                                         <label class="col-sm-3 text-end control-label col-form-label">

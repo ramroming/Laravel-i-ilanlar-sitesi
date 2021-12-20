@@ -19,6 +19,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 
     <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section" style="background-image: url('{{asset('assets')}}/images/hero_1.jpg');">

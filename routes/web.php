@@ -33,8 +33,15 @@ Route::post('/sendmessage',[HomeController::class,'sendmessage'])->name('sendmes
 // for slider to get to job ad
 Route::get('/job/{id}/{slug}',[HomeController::class,'job'])->name('job');
 
+// for livewire job search
+Route::post('/getjob',[HomeController::class,'getjob'])->name('getjob');
+Route::get('/joblist/{search}',[HomeController::class,'joblist'])->name('joblist');
+
 //jobs from category list in nav
 Route::get('/categoryjobs/{id}/{slug}',[HomeController::class,'categoryjobs'])->name('categoryjobs');
+
+//apply for job from the slider in home
+Route::post('/apply/{id}',[HomeController::class,'apply'])->whereNumber('id')->name('apply');
 
 // admin login/logout routing
 Route::get('/admin/login',[HomeController::class, 'login'])->name('adminLogin');

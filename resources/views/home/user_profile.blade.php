@@ -17,6 +17,10 @@
                 </div>
             </div>
         </div>
+
+        <a href="#next" class="scroll-button smoothscroll">
+            <span class=" icon-keyboard_arrow_down"></span>
+        </a>
     </section>
 
     <section class="site-section block__18514" id="next-section">

@@ -12,7 +12,7 @@
                     <div class=" col-lg-6 align-self-center text-center text-lg-left">
                         <h1>{{$rs->title}}</h1>
                         <h4 class="my-font">{{$rs->salary}}</h4>
-                        <a href="{{route('job',['id' => $rs->id,'slug'=> $rs -> slug])}}}"
+                        <a href="{{route('job',['id' => $rs->id,'slug'=> $rs -> slug])}}"
                            class="btn btn-warning text-white btn-lg mb-2 mt-2">Check Ad</a>
                     </div>
                     <div class="col-lg-6 align-self-end text-center text-lg-right">
@@ -26,3 +26,4 @@
     </div>
 
 </section>
+

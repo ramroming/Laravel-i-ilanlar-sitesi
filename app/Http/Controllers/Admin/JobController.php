@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,8 +55,16 @@ class JobController extends Controller
         $j -> status = $request -> input('status');
         $j -> slug = $request -> input('slug');
         $j -> salary = $request -> input('salary');
+        $j -> location = $request -> input('location');
         $j -> image = Storage::putFile('images', $request->file('image')); //file upload
         $j -> save();
+
+//        $image = new Image();
+//        $image -> job_id = $j -> id;
+//        $image -> title = $j -> title;
+//        $image -> image = $j ->image;
+//        $image -> save();
+
 
         return redirect() -> route('admin_jobs');
     }
@@ -103,11 +112,15 @@ class JobController extends Controller
         $j -> user_id = Auth::id();
         $j -> status = $request -> input('status');
         $j -> salary = $request -> input('salary');
+        $j -> location = $request -> input('location');
 //        $j -> image = Storage::putFile('images', $request->file('image')); //file upload
         if($request -> file('image')!=null){
             $j -> image = Storage::putFile('images', $request->file('image')); //solution to hashName problem
         }
         $j -> save();
+
+
+
 
         return redirect() -> route("admin_jobs");
     }
