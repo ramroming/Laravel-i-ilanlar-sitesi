@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </form>
-            @livewireScripts
+{{--         moved to footer >>   @livewireScripts--}}
         </div>
     </div>
 </div>

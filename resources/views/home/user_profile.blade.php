@@ -8,7 +8,7 @@
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('{{asset('assets')}}/images/hero_1.jpg');" id="home-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                     <h1 class="text-white font-weight-bold">User Profile</h1>
                     <div class="custom-breadcrumbs">
                         <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
@@ -18,28 +18,12 @@
             </div>
         </div>
 
-        <a href="#next" class="scroll-button smoothscroll">
-            <span class=" icon-keyboard_arrow_down"></span>
-        </a>
     </section>
 
-    <section class="site-section block__18514" id="next-section">
+    <section class="site-section block" id="next-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 mr-auto">
-                    <div class="border p-4 rounded">
-                        <p class="text-black font-weight-bold">User Panel</p>
-                        <hr>
-                        <br>
-                        <ul class="list-unstyled block__47528 mb-0">
-                            <li><a href="{{route('myprofile')}}">My profile</a></li>
-                            <li><a href="#">My Cv</a></li>
-                            <li><a href="#">xxxxx</a></li>
-                            <li><a href="#">xxxxx</a></li>
-                            <li><a href="{{route('logout')}}">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+               @include('home._user-control-panel')
                 <div class="col-lg-10">
                     @include('profile.show')
                 </div>

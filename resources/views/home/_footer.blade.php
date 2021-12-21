@@ -115,7 +115,8 @@
 <!-- Template Main JS File -->
 <script src="{{asset('assets')}}/assets/js/main.js"></script>
 
+{{--livewire scripts--}}
+@livewireScripts
 
-
-
-
+{{--for job_single pagintation--}}
+@yield('footerjs')

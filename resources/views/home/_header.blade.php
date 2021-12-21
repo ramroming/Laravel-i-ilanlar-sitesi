@@ -24,7 +24,7 @@
                     <li class="dropdown"><a href="#"><span>Account</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
                             @auth
-                                <li><a  class="nav-link"  href="{{route('myprofile')}}">Profile: {{Auth::user()->name}}</a></li>
+                                <li><a  class="nav-link"  href="{{route('myprofile')}}"><span><i class="fa fa-user-o pr-1"></i>{{Auth::user()->name}}</span></a></li>
                                 <li><a  class="nav-link" href="{{route('logout')}}"><span>Logout</span></a></li>
                             @endauth
                             @guest

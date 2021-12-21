@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\MessageController;
@@ -95,6 +96,17 @@ Route::middleware('auth')->prefix('admin')->group(function (){
 
     });
 
+    //comment
+    Route::prefix('comment')->group(function(){
+
+        Route::get('/',[CommentController::class,'index'])->name('admin_comment');
+        Route::post('update/{id}',[CommentController::class,'update'])->name('admin_comment_update')->whereNumber("id");
+        Route::get('show/{id}',[CommentController::class,'show'])->name('admin_comment_show')->whereNumber("id");;
+        Route::get('delete/{id}',[CommentController::class,'destroy'])->name('admin_comment_delete')->whereNumber("id");
+
+
+    });
+
     //Setting
     Route::get('setting',[SettingController::class, 'index'])->name('admin_settings');
     Route::post('setting/update',[SettingController::class, 'update'])->name('admin_setting_update');
@@ -106,6 +118,9 @@ Route::middleware('auth')->prefix('admin')->group(function (){
 // account routing
 Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
     Route::get('/',[\App\Http\Controllers\UserController::class, 'index'])->name('myprofile');
+    Route::get('/mycomments',[\App\Http\Controllers\UserController::class,'mycomments'])->name('mycomments');
+    Route::get('delete/{id}',[\App\Http\Controllers\UserController::class,'destroyComment'])->name('destroy-comment');
+
 });
 
 

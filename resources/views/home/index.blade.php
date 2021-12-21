@@ -81,7 +81,7 @@
                 <ul id="my-jobs" class="job-listings mb-5">
 
                     @foreach($latest as $rs)
-                        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                        <li class="job-listing d-block d-sm-flex p-3 pb-sm-0 align-items-center">
                             <a href="{{route('job',['id' => $rs->id,'slug'=> $rs -> slug])}}"></a>
 
                             <div class="job-listing-logo">
@@ -91,6 +91,21 @@
                             <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
                                 <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                     <h2>{{$rs->title}}</h2>
+                                    @php
+                                        $avgRating= \App\Http\Controllers\HomeController::avgRating($rs-> id);
+                                        $commentsCount= \App\Http\Controllers\HomeController::commentsCount($rs-> id);
+                                    @endphp
+
+                                    @if($commentsCount)
+                                        {{$commentsCount}} Comment(s) {{$avgRating}}
+                                        <div class="p-2 ">
+                                            <i class="fa text-primary fa-star @if ($avgRating<1) fa-star-o  @endif pl-1"></i>
+                                            <i class="fa text-primary fa-star @if ($avgRating<2) fa-star-o  @endif pl-1"></i>
+                                            <i class="fa text-primary fa-star @if ($avgRating<3) fa-star-o  @endif pl-1"></i>
+                                            <i class="fa text-primary fa-star @if ($avgRating<4) fa-star-o  @endif pl-1"></i>
+                                            <i class="fa text-primary fa-star @if ($avgRating<5) fa-star-o  @endif pl-1"></i>
+                                        </div>
+                                    @endif
                                     <strong>{{$rs->salary}}</strong>
                                 </div>
 

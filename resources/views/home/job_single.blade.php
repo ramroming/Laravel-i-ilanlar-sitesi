@@ -1,5 +1,79 @@
 @extends('layouts.home')
 
+@section('css')
+    <style>
+        .comment-box {
+            padding: 5px;
+        }
+
+        .comment-area textarea {
+            resize: none;
+        }
+
+        .send {
+            color: #fff;
+        }
+
+        .send:hover {
+            opacity: 0.5;
+        }
+
+        .rating {
+            display: flex;
+            margin-top: -10px;
+            flex-direction: row-reverse;
+            margin-left: -4px;
+            float: left
+        }
+
+        .rating > input {
+            display: none
+        }
+
+        .rating > label {
+            position: relative;
+            width: 19px;
+            font-size: 25px;
+            color: #7ed048;
+            cursor: pointer
+        }
+
+        .rating > label::before {
+            content: "\2605";
+            position: absolute;
+            opacity: 0
+        }
+
+        .rating > label:hover:before,
+        .rating > label:hover ~ label:before {
+            opacity: 1 !important
+        }
+
+        .rating > input:checked ~ label:before {
+            opacity: 1
+        }
+
+        .rating:hover > input:checked ~ label:before {
+            opacity: 0.4
+        }
+
+        .rating > label:hover:before,
+        .rating > label:hover ~ label:before {
+            opacity: 1 !important
+        }
+
+        .rating > input:checked ~ label:before {
+            opacity: 1
+        }
+
+        .rating:hover > input:checked ~ label:before {
+            opacity: 0.4
+        }
+    </style>
+
+
+@endsection
+
 @section('title', $data->title)
 @section('description'){{$data->description}}@endsection
 
@@ -55,10 +129,6 @@
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-block btn-light btn-md"><span
-                                    class="icon-heart-o mr-2 text-danger"></span>Save Job</a>
-                        </div>
-                        <div class="col-6">
                             <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
                         </div>
                     </div>
@@ -102,7 +172,7 @@
                     </div>
 
                     {{--                    tabs--}}
-                    <div class="row mb-5">
+                    <div class="row mb-4">
                         <!-- Tabs -->
                         <div class="card  ">
                             <!-- Nav tabs -->
@@ -119,7 +189,11 @@
 
                                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#comments"
                                                         role="tab"><span class="hidden-sm-up"></span> <span
-                                            class="hidden-xs-down">Comments</span></a></li>
+                                            class="hidden-xs-down">
+                                            @php
+                                                $commentsCount= \App\Http\Controllers\HomeController::commentsCount($data-> id);
+                                            @endphp
+                                            Comments ({{$commentsCount}})</span></a></li>
 
 
                             </ul>
@@ -149,12 +223,57 @@
                                     </div>
                                 </div>
 
+
+                                {{--      COMMENTS --}}
                                 <div class="tab-pane " id="comments" role="tabpanel">
                                     <div class="p-20">
 
                                         <div class="form-group row ">
                                             <div class="p-20">
-                                                <p class="p-4"></p>
+
+                                                <div class="row">
+
+                                                        <div class="col-12">
+                                                            <div class=" ml-2">
+
+                                                            @foreach($comment as $rs)
+                                                                <!-- Comment  -->
+                                                                    <div class="d-flex flex-row comment-row p-3">
+                                                                        <div class="bg-light p-3 w-100 rounded border border-success">
+                                                                            <h6 class=" text-secondary font-medium mb-2"><a><i
+                                                                                        class="fa fa-user mr-1"></i>
+                                                                                </a>{{$rs->user->name}}</h6>
+                                                                            <h6 class="font-medium">
+                                                                                <strong>{{$rs->subject}}</strong>
+                                                                            </h6>
+                                                                            <span
+                                                                                class="mb-3 d-block">{{$rs->comment}}</span>
+                                                                            <div class="mb-3 rating">
+                                                                                <i class="fa text-primary fa-star @if ($rs->rate<5) fa-star-o  @endif pl-1"></i>
+                                                                                <i class="fa text-primary fa-star @if ($rs->rate<4) fa-star-o  @endif pl-1"></i>
+                                                                                <i class="fa text-primary fa-star @if ($rs->rate<3) fa-star-o  @endif pl-1"></i>
+                                                                                <i class="fa text-primary fa-star @if ($rs->rate<2) fa-star-o  @endif pl-1"></i>
+                                                                                <i class="fa text-primary fa-star @if ($rs->rate<1) fa-star-o  @endif pl-1"></i>
+
+                                                                            </div>
+                                                                            <div class="comment-footer">
+                                                                                    <span
+                                                                                        class="text-muted float-end"><i
+                                                                                            class="fa fa-clock-o pr-1"></i>{{$rs->created_at}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                </div>
+
+
                                             </div>
 
                                         </div>
@@ -166,13 +285,9 @@
                     </div>
 
 
-                    <div class="row mb-5">
-                        <div class="col-6">
-                            <a href="#" class="btn btn-block btn-light btn-md"><span
-                                    class="icon-heart-o mr-2 text-danger"></span>Save Job</a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-3 m-2">
+                            <a href="#" class="btn btn-block btn-success btn-md">Apply Now</a>
                         </div>
                     </div>
 
@@ -181,6 +296,23 @@
                     <div class="bg-light p-3 border rounded mb-4">
                         <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
                         <ul class="list-unstyled pl-3 mb-0">
+                            <li class="mb-2">
+                                <strong class="text-black">Rating:</strong>
+
+                                @php
+                                $avgRating= \App\Http\Controllers\HomeController::avgRating($data-> id);
+                                @endphp
+
+                                {{$commentsCount}} Comment(s) {{$avgRating}}
+                                <div class="p-2 ">
+                                    <i class="fa text-primary fa-star @if ($avgRating<5) fa-star-o  @endif pl-1"></i>
+                                    <i class="fa text-primary fa-star @if ($avgRating<4) fa-star-o  @endif pl-1"></i>
+                                    <i class="fa text-primary fa-star @if ($avgRating<3) fa-star-o  @endif pl-1"></i>
+                                    <i class="fa text-primary fa-star @if ($avgRating<2) fa-star-o  @endif pl-1"></i>
+                                    <i class="fa text-primary fa-star @if ($avgRating<1) fa-star-o  @endif pl-1"></i>
+                                </div>
+
+                            </li>
                             <li class="mb-2"><strong class="text-black">Published on:</strong> {{$data->created_at}}
                             </li>
                             <li class="mb-2"><strong class="text-black">description:</strong> {{$data->description}}
@@ -198,12 +330,16 @@
                     </div>
 
                     <div class="bg-light p-3 border rounded">
-                        <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+                        <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Leave a comment:</h3>
                         <div class="px-3">
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="comment-box ml-2">
+                                        @livewire('comment',['id' => $data -> id])
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -211,4 +347,10 @@
             </div>
         </div>
     </section>
+
 @endsection
+
+@section('footerjs')
+
+
+    @endsection

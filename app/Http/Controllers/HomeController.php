@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Job;
 use App\Models\Message;
@@ -22,6 +23,18 @@ class HomeController extends Controller
     public static function getSetting()
     {
         return Setting::first();
+    }
+
+//    rating functions for average and count:
+
+    public static function commentsCount($id){
+        return Comment::where('job_id', $id)->count();
+    }
+
+    public static function avgRating($id){
+        $average = Comment::where('job_id', $id)->average('rate');
+
+        return substr($average,0,3);
     }
 
 
@@ -43,10 +56,12 @@ class HomeController extends Controller
     {
         $data = Job::find($id);
         $imagelist = Image::where('job_id',$id)->get(); //using the model to get to data
-//        print_r($data);
-//        exit();
+        $comment = Comment::where('job_id',$id)->get();
+        //        print_r($data);
+       //        exit();
 
-        return view(view: 'home.job_single', data :['data' => $data,'imagelist' => $imagelist]);
+        return view(view: 'home.job_single', data :['data' => $data,'imagelist' => $imagelist,
+            'comment' => $comment]);
 
     }
 
