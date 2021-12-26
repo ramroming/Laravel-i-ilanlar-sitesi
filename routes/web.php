@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\MessageController;
@@ -111,15 +112,49 @@ Route::middleware('auth')->prefix('admin')->group(function (){
     Route::get('setting',[SettingController::class, 'index'])->name('admin_settings');
     Route::post('setting/update',[SettingController::class, 'update'])->name('admin_setting_update');
 
+    #FAQ
+    Route::prefix('faq')->group(function(){
+
+        Route::get('/',[FaqController::class,'index'])->name('admin_faq');
+        Route::get('/add',[FaqController::class,'create'])->name('admin_faq_add');
+        Route::post('store',[FaqController::class,'store'])->name('admin_faq_store');
+        Route::get('edit/{id}',[FaqController::class,'edit'])->name('admin_faq_edit')->whereNumber("id");
+        Route::post('update/{id}',[FaqController::class,'update'])->name('admin_faq_update')->whereNumber("id");
+        Route::get('delete/{id}',[FaqController::class,'destroy'])->name('admin_faq_delete')->whereNumber("id");
+        Route::get('show',[FaqController::class,'show'])->name('admin_faq_show');
+    });
+
 
 
 });
 
-// account routing
-Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
-    Route::get('/',[\App\Http\Controllers\UserController::class, 'index'])->name('myprofile');
+// user routing
+Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
+    Route::get('/profile',[\App\Http\Controllers\UserController::class, 'index'])->name('myprofile');
     Route::get('/mycomments',[\App\Http\Controllers\UserController::class,'mycomments'])->name('mycomments');
     Route::get('delete/{id}',[\App\Http\Controllers\UserController::class,'destroyComment'])->name('destroy-comment');
+    #Job
+    Route::prefix('job')->group(function(){
+
+        Route::get('/',[\App\Http\Controllers\JobController::class,'index'])->name('user_jobs');
+        Route::get('/add',[\App\Http\Controllers\JobController::class,'create'])->name('user_job_add');
+        Route::post('store',[\App\Http\Controllers\JobController::class,'store'])->name('user_job_store');
+        Route::get('edit/{id}',[\App\Http\Controllers\JobController::class,'edit'])->name('user_job_edit')->whereNumber("id");
+        Route::post('update/{id}',[\App\Http\Controllers\JobController::class,'update'])->name('user_job_update')->whereNumber("id");
+        Route::get('delete/{id}',[\App\Http\Controllers\JobController::class,'destroy'])->name('user_job_delete')->whereNumber("id");
+        Route::get('show',[\App\Http\Controllers\JobController::class,'show'])->name('user_job_show');
+    });
+
+    //job's image gallery
+    Route::prefix('image')->group(function(){
+
+        Route::get('/',[ImageController::class,'index'])->name('user_images');
+        Route::get('/add/{job_id}',[ImageController::class,'create'])->name('user_image_add')->whereNumber("job_id");
+        Route::post('store/{job_id}',[ImageController::class,'store'])->name('user_image_store')->whereNumber("job_id");;
+        Route::get('delete/{id}/{job_id}',[ImageController::class,'destroy'])->name('user_image_delete')->whereNumber("id");
+        Route::get('show',[ImageController::class,'show'])->name('user_image_show');
+
+    });
 
 });
 

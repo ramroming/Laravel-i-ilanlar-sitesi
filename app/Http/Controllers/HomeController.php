@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Job;
 use App\Models\Message;
@@ -17,7 +18,7 @@ class HomeController extends Controller
 
     public static function categorylist()
     {
-        return Category::where('parent_id' , '=',0)->with('children')->get();
+        return Category::where('parent_id', '=', 0)->with('children')->get();
     }
 
     public static function getSetting()
@@ -27,27 +28,29 @@ class HomeController extends Controller
 
 //    rating functions for average and count:
 
-    public static function commentsCount($id){
+    public static function commentsCount($id)
+    {
         return Comment::where('job_id', $id)->count();
     }
 
-    public static function avgRating($id){
+    public static function avgRating($id)
+    {
         $average = Comment::where('job_id', $id)->average('rate');
 
-        return substr($average,0,3);
+        return substr($average, 0, 3);
     }
 
 
     public function index()
     {
         $setting = Setting::first();
-        $slider = Job::select('id','title','image','salary','slug')->limit(4)->get();
-        $latest = Job::select('id','title','image','salary','slug','location')->limit(6)->orderByDesc('id')->get(); //latest jobs
+        $slider = Job::select('id', 'title', 'image', 'salary', 'slug')->limit(4)->get();
+        $latest = Job::select('id', 'title', 'image', 'salary', 'slug', 'location')->limit(6)->orderByDesc('id')->get(); //latest jobs
         $data = [
-            'setting'=> $setting,
-             'slider' => $slider,
+            'setting' => $setting,
+            'slider' => $slider,
             'latest' => $latest,
-            'page'=>'home'
+            'page' => 'home'
         ];
         return view(view: 'home.index', data: $data);
     }
@@ -55,12 +58,12 @@ class HomeController extends Controller
     public function job($id)
     {
         $data = Job::find($id);
-        $imagelist = Image::where('job_id',$id)->get(); //using the model to get to data
-        $comment = Comment::where('job_id',$id)->get();
+        $imagelist = Image::where('job_id', $id)->get(); //using the model to get to data
+        $comment = Comment::where('job_id', $id)->get();
         //        print_r($data);
-       //        exit();
+        //        exit();
 
-        return view(view: 'home.job_single', data :['data' => $data,'imagelist' => $imagelist,
+        return view(view: 'home.job_single', data: ['data' => $data, 'imagelist' => $imagelist,
             'comment' => $comment]);
 
     }
@@ -69,24 +72,24 @@ class HomeController extends Controller
     {
         $search = $request->input('search');
 
-        $count =Job::where('title','like','%'.$search.'%')->get()->count();
+        $count = Job::where('title', 'like', '%' . $search . '%')->get()->count();
 
-        if($count==1){
-            $data =Job::where('title','like','%'.$search.'%')->first();
-            return redirect()->route('job',['id'=>$data->id,'slug'=>$data->slug]);
+        if ($count == 1) {
+            $data = Job::where('title', 'like', '%' . $search . '%')->first();
+            return redirect()->route('job', ['id' => $data->id, 'slug' => $data->slug]);
 
-        }
-        else{
-            return redirect()->route('joblist',['search'=>$search]);
+        } else {
+            return redirect()->route('joblist', ['search' => $search]);
         }
 
 
     }
 
-    public function joblist($search){
-        $datalist= Job::where('title','like','%'.$search.'%')->get();
-        $count= Job::where('title','like','%'.$search.'%')->get()->count();
-        return view('home.search_jobs',['search'=>$search,'datalist'=>$datalist,'count'=>$count]);
+    public function joblist($search)
+    {
+        $datalist = Job::where('title', 'like', '%' . $search . '%')->get();
+        $count = Job::where('title', 'like', '%' . $search . '%')->get()->count();
+        return view('home.search_jobs', ['search' => $search, 'datalist' => $datalist, 'count' => $count]);
     }
 
 
@@ -100,18 +103,18 @@ class HomeController extends Controller
     }
 
 
-    public function categoryjobs($id,$slug)
+    public function categoryjobs($id, $slug)
     {
-        $datalist = Job::where('category_id',$id)->get(); //using the model to get to data
+        $datalist = Job::where('category_id', $id)->get(); //using the model to get to data
         $data = Category::find($id);
 //        print_r($data);
 //        exit();
 
         //return total of jobs of the category by finding how many rows match with the category id
-        $count = (Job::where('category_id','=',$id))->count();
+        $count = (Job::where('category_id', '=', $id))->count();
 
         $count = (Job::all())->count();
-        return view(view: 'home.categoryjobs', data :['data' => $data, 'datalist' => $datalist, 'count' => $count]);
+        return view(view: 'home.categoryjobs', data: ['data' => $data, 'datalist' => $datalist, 'count' => $count]);
     }
 
 
@@ -123,17 +126,19 @@ class HomeController extends Controller
     public function aboutus()
     {
         $setting = Setting::first();
-        return view(view: 'home.about', data: ['setting' => $setting ]);
+        return view(view: 'home.about', data: ['setting' => $setting]);
     }
+
     public function ref()
     {
         $setting = Setting::first();
-        return view(view: 'home.references', data: ['setting'=>$setting]);
+        return view(view: 'home.references', data: ['setting' => $setting]);
     }
+
     public function contact()
     {
         $setting = Setting::first();
-        return view(view: 'home.contact',data: ['setting'=>$setting]);
+        return view(view: 'home.contact', data: ['setting' => $setting]);
     }
 
     public function sendmessage(Request $request)
@@ -145,21 +150,22 @@ class HomeController extends Controller
         $data->subject = $request->input('subject');
         $data->message = $request->input('message');
         $data->save();
-        return redirect() -> route('contact')->with('success','Message sent Successfully, Thank you!');;
+        return redirect()->route('contact')->with('success', 'Message sent Successfully, Thank you!');;
 
     }
 
     public function faq()
     {
-        return view(view: 'home.about');
+        $datalist = Faq::all()->sortBy('position');
+        return view(view: 'home.faq', data: ['datalist' => $datalist]);
     }
 
 
     public function loginCheck(request $request)
     {
-        if ($request->isMethod("post")){
+        if ($request->isMethod("post")) {
 
-            $credentials = $request->only('email','password');
+            $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
@@ -170,10 +176,8 @@ class HomeController extends Controller
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ]);
-        }
-        else
-        {
-           return view("admin.login");
+        } else {
+            return view("admin.login");
         }
 
     }

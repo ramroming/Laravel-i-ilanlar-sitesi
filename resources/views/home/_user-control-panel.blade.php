@@ -7,7 +7,7 @@
             <li><a href="{{route('myprofile')}}">My profile</a></li>
             <li><a href="#">My Cv</a></li>
             <li><a href="{{route('mycomments')}}">My comments</a></li>
-            <li><a href="#">xxxxx</a></li>
+            <li><a href="{{route('user_jobs')}}">My Jobs</a></li>
             <li><a href="{{route('logout')}}">Logout</a></li>
         </ul>
     </div>

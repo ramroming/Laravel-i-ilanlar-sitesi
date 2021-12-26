@@ -93,7 +93,7 @@
                 <div class="col-md-7">
                     <h1 class="text-white font-weight-bold ">{{$data->title}}</h1>
                     <div class="custom-breadcrumbs">
-                        <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                        <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
                         <a href="#">Jobs</a> <span class="mx-2 slash">/</span>
                         <span
                             class="text-white"><strong> {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($data->category, $data->category->title)}}</strong></span>

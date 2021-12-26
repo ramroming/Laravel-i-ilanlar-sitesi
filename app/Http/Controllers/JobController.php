@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Image;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
@@ -17,23 +14,25 @@ class JobController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function index()
-    {
-        $joblist = Job::all();
-        return view('admin.job',['joblist' => $joblist ]);
-    }
-
-    /**
+     *
+     *
+     * /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+
+    public function index()
+    {
+        $joblist = Job::where('user_id',Auth::id())->get();
+        return view('home.user_job',['joblist' => $joblist ]);
+    }
+
     public function create()
     {
 //        $datalist= Category::all();
         $datalist = Category::with('children')->get();
-        return view('admin.job_add',['datalist' => $datalist]);
+        return view('home.user_job_add',['datalist' => $datalist]);
     }
 
     /**
@@ -60,7 +59,7 @@ class JobController extends Controller
         $j -> save();
 
 
-        return redirect() -> route('admin_jobs');
+        return redirect() -> route('user_jobs')->with('success','Job Added Successfully!');
     }
 
     /**
@@ -85,7 +84,7 @@ class JobController extends Controller
         $j = Job::find($id);
 //        $datalist= Category::all();
         $datalist = Category::with('children')->get();
-        return view("admin.job_edit",['j' => $j, 'dataList' => $datalist]);
+        return view("home.user_job_edit",['j' => $j, 'dataList' => $datalist]);
     }
 
     /**
@@ -116,7 +115,7 @@ class JobController extends Controller
 
 
 
-        return redirect() -> route("admin_jobs");
+        return redirect() -> route("user_jobs");
     }
 
     /**
@@ -130,6 +129,6 @@ class JobController extends Controller
 //        DB::table('jobs')->where('id','=',$id)->delete();
         $j = Job::find($id);
         $j-> delete();
-        return redirect()->route('admin_jobs');
+        return redirect()->route('user_jobs');
     }
 }

@@ -42,7 +42,7 @@
                                         <label class="col-sm-3 text-end control-label col-form-label">
                                             Category</label>
                                         <div class="col-sm-9">
-                                            <select name="category_id" class="select2 form-select shadow-none"
+                                            <select name="category_id" class="select form-select shadow-none"
                                                     style="width: 100%; height:36px;">
                                                 @foreach($dataList as $d)
                                                     <option value="{{$d->id}}"  {{ ($d-> id) == $j -> category_id ? "selected" : "" }} >
