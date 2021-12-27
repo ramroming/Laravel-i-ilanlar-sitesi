@@ -158,18 +158,7 @@
                                 </div>
 
 
-                                <div class="form-group row">
-                                    <label class="col-sm-3 text-end control-label col-form-label">
-                                        Status</label>
-                                    <div class="col-md-9">
-                                        <select name="status" class="select2 form-select shadow-none"
-                                                style="width: 100%; height:36px;">
-                                            <option selected="selected"> {{$j -> status}} </option>
-                                            <option>True</option>
-                                            <option>False</option>
-                                        </select>
-                                    </div>
-                                </div>
+
 
                                 <div class="border-top ">
                                     <div class="card-body text-center">

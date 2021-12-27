@@ -4,10 +4,13 @@
         <hr>
         <br>
         <ul class="list-unstyled block__47528 mb-0">
-            <li><a href="{{route('myprofile')}}">My profile</a></li>
-            <li><a href="#">My Cv</a></li>
-            <li><a href="{{route('mycomments')}}">My comments</a></li>
-            <li><a href="{{route('user_jobs')}}">My Jobs</a></li>
+            <li><a href="{{route('myprofile')}}">Profile</a></li>
+            <li><a href="{{route('user_public_profile')}}">Public profile</a></li>
+            <li><a href="{{route('user_cv')}}">Cv</a></li>
+            <li><a href="{{route('mycomments')}}">comments</a></li>
+            <li><a href="{{route('user_application')}}">Applications</a></li>
+            <li><a href="{{route('user_received_applications')}}">Received Applications</a></li>
+            <li><a href="{{route('user_jobs')}}">Jobs</a></li>
             <li><a href="{{route('logout')}}">Logout</a></li>
         </ul>
     </div>

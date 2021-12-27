@@ -113,8 +113,6 @@ class JobController extends Controller
         $j -> save();
 
 
-
-
         return redirect() -> route("user_jobs");
     }
 
@@ -129,6 +127,6 @@ class JobController extends Controller
 //        DB::table('jobs')->where('id','=',$id)->delete();
         $j = Job::find($id);
         $j-> delete();
-        return redirect()->route('user_jobs');
+        return redirect()->route('user_jobs')->with('success','Job Deleted Successfully!');
     }
 }

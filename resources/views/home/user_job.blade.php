@@ -11,7 +11,6 @@
                 <h1 class="text-white font-weight-bold">My Jobs</h1>
                 <div class="custom-breadcrumbs">
                     <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
-                    <a href="{{route('myprofile')}}">My profile</a> <span class="mx-2 slash">/</span>
                     <span class="text-white"><strong>My Jobs</strong></span>
                 </div>
             </div>

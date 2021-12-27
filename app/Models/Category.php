@@ -31,5 +31,11 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id');
     }
 
+    #one to many , get the cvs of the same category / has many
+    public function cvs()
+    {
+        return $this->hasMany(Cv::class);
+    }
+
 
 }

@@ -9,6 +9,7 @@ use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Job;
 use App\Models\Message;
+use App\Models\Profile;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,10 +96,7 @@ class HomeController extends Controller
 
     public function apply($id)
     {
-        echo "Apply for job<br>";
         $data = Job::find($id);
-        print_r($data);
-        exit();
 
     }
 
@@ -158,6 +156,14 @@ class HomeController extends Controller
     {
         $datalist = Faq::all()->sortBy('position');
         return view(view: 'home.faq', data: ['datalist' => $datalist]);
+    }
+
+
+    public function profile($id)
+    {
+//        $datalist = Profile::find($id);
+        $datalist = Profile::where('user_id', '=', $id)->get();
+        return view(view: 'home.public_profile', data: ['datalist' => $datalist]);
     }
 
 

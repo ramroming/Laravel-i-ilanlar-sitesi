@@ -34,7 +34,15 @@
                             </li>
 
                             <li>
-                                <a class="nav-link text-primary " href="{{route('mycomments')}}"><span>CV</span></a>
+                                <a class="nav-link text-primary " href="{{route('user_cv')}}"><span>CV</span></a>
+                            </li>
+
+                            <li>
+                                <a class="nav-link text-primary " href="{{route('user_public_profile')}}"><span>Public Profile</span></a>
+                            </li>
+
+                            <li>
+                                <a class="nav-link text-primary " href="{{route('user_application')}}"><span>Applications</span></a>
                             </li>
 
                             <li><a class="nav-link " href="{{route('logout')}}"><span>Logout</span></a></li>

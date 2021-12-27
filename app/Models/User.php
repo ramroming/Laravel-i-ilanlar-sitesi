@@ -59,7 +59,29 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function reviews(){
+    public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    #one to one , each user has one and only one cv
+    public function cv()
+    {
+        return $this->hasOne(Cv::class);
+    }
+
+    #one to one , each user has one and only one profile
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+//    many to one, each user may post one or more job
+    public function jobs(){
+        return $this->hasMany(Job::class);
+    }
+
+    //one to many, each user has one or more application
+    public function applications(){
+        return $this->hasMany(Application::class);
     }
 }

@@ -129,7 +129,7 @@
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-block btn-primary btn-md">Apply Now</a>
+                            <a href="{{route('user_application_create',['job_id' => $data->id])}}" class="btn btn-block btn-success btn-md">Apply Now</a>
                         </div>
                     </div>
                 </div>
@@ -240,9 +240,10 @@
                                                                 <!-- Comment  -->
                                                                     <div class="d-flex flex-row comment-row p-3">
                                                                         <div class="bg-light p-3 w-100 rounded border border-success">
-                                                                            <h6 class=" text-secondary font-medium mb-2"><a><i
-                                                                                        class="fa fa-user mr-1"></i>
-                                                                                </a>{{$rs->user->name}}</h6>
+                                                                            <h6 class=" text-secondary font-medium mb-2"><i
+                                                                                    class="fa fa-user mr-1"></i>
+                                                                                <a href="{{route('viewProfile',['id' => $rs->user->id])}}">
+                                                                                {{$rs->user->name}}</a></h6>
                                                                             <h6 class="font-medium">
                                                                                 <strong>{{$rs->subject}}</strong>
                                                                             </h6>
@@ -287,7 +288,7 @@
 
                     <div class="row align-items-center justify-content-center">
                         <div class="col-3 m-2">
-                            <a href="#" class="btn btn-block btn-success btn-md">Apply Now</a>
+                            <a href="{{route('user_application_create',['job_id'=> $data->id])}}" class="btn btn-block btn-success btn-md">Apply Now</a>
                         </div>
                     </div>
 
@@ -317,7 +318,8 @@
                             </li>
                             <li class="mb-2"><strong class="text-black">description:</strong> {{$data->description}}
                             </li>
-                            {{--                            <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>--}}
+                            <li class="mb-2"><strong class="text-black">Published By:</strong><a
+                                    href="{{route('viewProfile',['id'=> $data->user_id])}}"> {{$data->user->name}}</a></li>
                             {{--                            <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>--}}
                             {{--                            <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>--}}
                             <li class="mb-2"><strong class="text-black">Job Location:</strong> {{$data->location}}</li>
@@ -350,7 +352,4 @@
 
 @endsection
 
-@section('footerjs')
 
-
-    @endsection

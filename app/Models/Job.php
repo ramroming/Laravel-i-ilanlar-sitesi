@@ -19,4 +19,17 @@ class Job extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+//    many to one, each job is published by one and only one user
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //one to many, each job is related to one or more application
+    public function application(){
+        return $this->hasMany(Application::class);
+    }
+
 }

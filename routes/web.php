@@ -32,6 +32,11 @@ Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/sendmessage',[HomeController::class,'sendmessage'])->name('sendmessage');
 
+
+
+//to view a person's profile
+Route::get('/profile/{id}',[HomeController::class,'profile'])->name('viewProfile');
+
 // for slider to get to job ad
 Route::get('/job/{id}/{slug}',[HomeController::class,'job'])->name('job');
 
@@ -133,6 +138,8 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::get('/profile',[\App\Http\Controllers\UserController::class, 'index'])->name('myprofile');
     Route::get('/mycomments',[\App\Http\Controllers\UserController::class,'mycomments'])->name('mycomments');
     Route::get('delete/{id}',[\App\Http\Controllers\UserController::class,'destroyComment'])->name('destroy-comment');
+    Route::get('/recievedApplications',[\App\Http\Controllers\ApplicationController::class,'recApp'])->name('user_received_applications');
+
     #Job
     Route::prefix('job')->group(function(){
 
@@ -155,6 +162,43 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
         Route::get('show',[ImageController::class,'show'])->name('user_image_show');
 
     });
+
+    #Cv
+    Route::prefix('cv')->group(function(){
+
+        Route::get('/',[\App\Http\Controllers\CvController::class,'index'])->name('user_cv');
+        Route::get('/create',[\App\Http\Controllers\CvController::class,'create'])->name('user_cv_create');
+        Route::post('store',[\App\Http\Controllers\CvController::class,'store'])->name('user_cv_store');
+        Route::get('edit/{id}',[\App\Http\Controllers\CvController::class,'edit'])->name('user_cv_edit')->whereNumber("id");
+        Route::post('update/{id}',[\App\Http\Controllers\CvController::class,'update'])->name('user_cv_update')->whereNumber("id");
+        Route::get('delete/{id}',[\App\Http\Controllers\CvController::class,'destroy'])->name('user_cv_delete')->whereNumber("id");
+        Route::get('show',[\App\Http\Controllers\CvController::class,'show'])->name('user_cv_show');
+    });
+
+    #Public Profile
+    Route::prefix('public-profile')->group(function(){
+
+        Route::get('/',[\App\Http\Controllers\ProfileController::class,'index'])->name('user_public_profile');
+        Route::get('/create',[\App\Http\Controllers\ProfileController::class,'create'])->name('user_profile_create');
+        Route::post('store',[\App\Http\Controllers\ProfileController::class,'store'])->name('user_profile_store');
+        Route::get('edit/{id}',[\App\Http\Controllers\ProfileController::class,'edit'])->name('user_profile_edit')->whereNumber("id");
+        Route::post('update/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('user_profile_update')->whereNumber("id");
+        Route::get('delete/{id}',[\App\Http\Controllers\ProfileController::class,'destroy'])->name('user_profile_delete')->whereNumber("id");
+        Route::get('show',[\App\Http\Controllers\ProfileController::class,'show'])->name('user_profile_show');
+    });
+
+    #Application
+    Route::prefix('application')->group(function(){
+
+        Route::get('/',[\App\Http\Controllers\ApplicationController::class,'index'])->name('user_application');
+        Route::get('/create/{job_id}',[\App\Http\Controllers\ApplicationController::class,'create'])->name('user_application_create')->whereNumber("id");
+        Route::post('store',[\App\Http\Controllers\ApplicationController::class,'store'])->name('user_application_store');
+        Route::get('edit/{id}',[\App\Http\Controllers\ApplicationController::class,'edit'])->name('user_application_edit')->whereNumber("id");
+        Route::post('update/{id}',[\App\Http\Controllers\ApplicationController::class,'update'])->name('user_application_update')->whereNumber("id");
+        Route::get('delete/{id}',[\App\Http\Controllers\ApplicationController::class,'destroy'])->name('user_application_delete')->whereNumber("id");
+        Route::get('show/{id}',[\App\Http\Controllers\ApplicationController::class,'show'])->name('user_application_show');
+    });
+
 
 });
 
