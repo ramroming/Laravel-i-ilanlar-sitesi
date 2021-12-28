@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title', 'My Application')
+@section('title', 'Single Received Application')
 
 @section('content')
 
@@ -12,8 +12,8 @@
                     <h1 class="text-white display-6 font-weight-bold">My Profile</h1>
                     <div class="custom-breadcrumbs display-7">
                         <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
-                        <a href="{{route('user_application')}}">Applications</a> <span class="mx-2 slash">/</span>
-                        <span class="text-white"><strong>My Application</strong></span>
+                        <a href="{{route('user_received_applications')}}">Received Applications</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>Single Received Application</strong></span>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     @include('home.message')
                     <div class="row">
                         @foreach($datalist as $d)
-                        <a href="{{route('user_application_edit',['id'=> $d->id])}}"> View Application <i class="fa fa-edit"></i></a>
+                        <a href="{{route('user_edit_single_received_application',['job_id'=> $d->job_id,'user_id'=> $d->user_id])}}"> Edit Application <i class="fa fa-edit"></i></a>
                     </div>
                         <div class="table-responsive">
                             <table id="app-table" class="table table-bordered border-light bg-white  ">
@@ -42,11 +42,6 @@
                                 <tr>
                                     <th>Job</th>
                                     <td>{{ $d->job->title }}</td>
-                                </tr>
-
-                                <tr>
-                                    <th>Employer id</th>
-                                    <td>{{$d->owner_id}} , <a class="text-info " href="{{route('user_profile_show',[$d->owner_id])}}"><i class="fa  fa-user-circle"></i> check profile from here </a></td>
                                 </tr>
 
                                 <tr>

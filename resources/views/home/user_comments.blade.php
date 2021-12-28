@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-
+@section('title','My comments')
 @section('content')
 
 <!-- HOME -->

@@ -1,8 +1,8 @@
 @extends('layouts.home')
 
-@section('title', 'Public Profile')
-
-
+@foreach($datalist as $data)
+@section('title', $data->user->name."'s public profile")
+@endforeach
 
 @section('content')
 
@@ -17,11 +17,11 @@
 <section class="site-section block " id="next-section">
     <div class="container">
         <div class="row">
-            @foreach($datalist as $data)
+
             <div class="col-lg-8">
 
                 <div class="card align-items-center justify-content-center p-5">
-
+                    @foreach($datalist as $data)
                     <div class="mb-2">
                         <label class="text-success  font-weight-bold">Name: </label>
                         <span>{{$data->user->name}}</span>

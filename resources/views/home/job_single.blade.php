@@ -119,7 +119,7 @@
                         <div>
                             <h2 class="my-font">{{$data->title}}</h2>
                             <div>
-                                <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
+                                <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{$data->user->name}}</span>
                                 <span class="m-2"><span class="icon-room mr-2"></span>{{$data->location}}</span>
                                 <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">Full Time</span></span>
                             </div>

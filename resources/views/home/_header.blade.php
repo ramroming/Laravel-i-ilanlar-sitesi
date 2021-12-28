@@ -20,11 +20,17 @@
                 <li><a class="nav-link  scrollto" href="{{route('faq')}}">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="#team">Team</a></li>
                 {{--  nav account --}}
-                <li class="dropdown"><a href="#"><span>Account</span><i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="{{route('myprofile')}}"><span>Account</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
                         @auth
-                            <li><a class="nav-link" href="{{route('myprofile')}}"><span><i
-                                            class="fa fa-user-o pr-1"></i>{{Auth::user()->name}}</span></a></li>
+
+                            <li class="border-bottom ">
+                                <a class="nav-link fs-6 text-center" href="{{route('myprofile')}}"><span><i
+                                            class="fa fa-user-o pr-1"></i>{{Auth::user()->name}} </span>
+                                </a>
+                                <p class="nav-link text-center text-danger">{{Auth::user()->roles->pluck('name')->implode(' , ')}}</p>
+
+                            </li>
                             <li>
                                 <a class="nav-link text-primary" href="{{route('mycomments')}}"><span>Comments</span></a>
                             </li>

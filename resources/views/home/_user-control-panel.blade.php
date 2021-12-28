@@ -3,15 +3,24 @@
         <p class="text-black font-weight-bold">User Panel</p>
         <hr>
         <br>
-        <ul class="list-unstyled block__47528 mb-0">
-            <li><a href="{{route('myprofile')}}">Profile</a></li>
-            <li><a href="{{route('user_public_profile')}}">Public profile</a></li>
-            <li><a href="{{route('user_cv')}}">Cv</a></li>
-            <li><a href="{{route('mycomments')}}">comments</a></li>
-            <li><a href="{{route('user_application')}}">Applications</a></li>
-            <li><a href="{{route('user_received_applications')}}">Received Applications</a></li>
-            <li><a href="{{route('user_jobs')}}">Jobs</a></li>
-            <li><a href="{{route('logout')}}">Logout</a></li>
+        @auth
+        <ul class="list-unstyled block mb-0">
+            <li class="border-bottom mb-3"><a href="{{route('myprofile')}}">Profile</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('user_public_profile')}}">Public profile</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('user_cv')}}">Cv</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('mycomments')}}">comments</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('user_application')}}">Applications</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('user_received_applications')}}">Received Applications</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('user_jobs')}}">Jobs</a></li>
+            <li class="border-bottom mb-3"><a href="{{route('logout')}}">Logout</a></li>
+
+            @php
+                $userRoles = Auth::user()->roles->pluck('name');
+            @endphp
+            @if($userRoles->contains('admin'))
+                <li class="border-bottom mb-3"><a href="{{route('adminHome')}}" target="_blank">Admin Panel</a></li>
+            @endif
         </ul>
+        @endauth
     </div>
 </div>

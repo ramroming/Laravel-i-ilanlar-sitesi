@@ -42,6 +42,35 @@
                         <i class="fa fa-question-circle"></i>
                         <span class="hide-menu">FAQ</span></a></li>
 
+                <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="{{route('admin_users')}}" aria-expanded="false">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="hide-menu">Users</span></a></li>
+
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                             href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                            class="hide-menu">Applications </span></a>
+
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="{{route('admin_applications')}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-outline"></i><span class="hide-menu"> All Applications
+                                        </span></a></li>
+
+                        <li class="sidebar-item"><a href="{{route('admin_applications_list',['status'=>'in-review'])}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-plus"></i><span class="hide-menu"> in-review Applications
+                                        </span></a></li>
+
+                        <li class="sidebar-item"><a href="{{route('admin_applications_list',['status'=>'Accepted'])}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-plus"></i><span class="hide-menu"> Accepted Applications
+                                        </span></a></li>
+
+                        <li class="sidebar-item"><a href="{{route('admin_applications_list',['status'=>'Rejected'])}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-plus"></i><span class="hide-menu"> Rejected Applications
+                                        </span></a></li>
+
+                    </ul>
+
+                </li>
 
 
             </ul>

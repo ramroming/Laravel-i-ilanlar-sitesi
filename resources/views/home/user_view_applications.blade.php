@@ -26,11 +26,12 @@
                @include('home._user-control-panel')
                 <div class="col-lg-10">
 
+                    @include('home.message')
 
-                        @include('home.message')
                         <div class="card  p-4 bg-light">
                             <div class="row">
                             <div class="text-center mb-2 "><h1 class="my-font">My Applications</h1></div>
+
                             <div class="table-responsive">
                                 <table id="app-table" class="table table-bordered border-light bg-white  ">
                                     <thead>

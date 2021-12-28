@@ -26,8 +26,11 @@
             <div class="row">
                @include('home._user-control-panel')
                 <div class="col-lg-10">
-                    @include('home.message')
 
+                    @include('home.message')
+                    <div class="card  p-4 bg-light">
+                        <div class="row">
+                            <div class="text-center mb-2 "><h1 class="my-font">Received Applications</h1></div>
                         <div class="table-responsive">
                             <table id="app-table" class="table table-bordered border-light bg-white  ">
 
@@ -52,7 +55,7 @@
                                         <td>{!! $d->note !!}</td>
                                         <td>{{ $d->created_at }}</td>
                                         <td>{{ $d->status }}</td>
-                                        <td><a href="{{route('user_application_show',['id'=> $d->id])}}"> <i class="fa fa-edit"></i></a></td>
+                                        <td><a href="{{route('user_single_received_application',['job_id' => $d->job_id,'user_id'=> $d->user_id])}}"> <i class="fa fa-edit"></i></a></td>
                                         <td><a href="{{route('user_application_delete',['id'=> $d->id])}}"
                                                onclick="return confirm('Are you Sure?')"><i class="fa fa-trash"></i></a></td>
                                     </tr>
@@ -63,7 +66,7 @@
 
                             </table>
                         </div>
-
+                    </div>
                     </div>
                 </div>
             </div>

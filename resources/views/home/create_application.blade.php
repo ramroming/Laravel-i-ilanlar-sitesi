@@ -23,7 +23,7 @@
                         <div class="row form-group">
                             <h2 class="my-font text-secondary font-weight-bold">Apply to the job by creating an Application:</h2>
                         </div>
-                        @include('home.message')
+
 
                         @foreach($job_data as $j)
                         <div class="row form-group">
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="row form-group">
-                          <p class="text-success text-center">Don't worry about sending your cv! if you have already created one, the applicant will easily find it <i class="fa fa-check"></i></p>
-                            <p class="text-success text-center">Just write the notes you would like to send to the employer..</p>
+                          <p class="text-success text-center">Don't worry about sending your cv! if you have already created one, the employer will easily find it <i class="fa fa-check"></i></p>
+                            <p class="text-success text-center">Just Submit the Application..</p>
                         </div>
 
 
@@ -72,6 +72,14 @@
                                            value="{{Auth::user()->cv->title}}" readonly/>
                                 </div>
                             </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-6 mb-md-0">
+                                        <label class="text-black" for="cv">Your Cv:</label>
+                                        <a href="{{route('show_application_cv',['id' => Auth::user()->cv->id])}}" class="btn btn-outline-warning text-black  ">Your Cv</a>
+                                    </div>
+                                </div>
                             @endif
 
 
@@ -84,6 +92,15 @@
                             </div>
 
                          @if(!empty(Auth::user()->profile->phone_number))
+
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-6 mb-md-0">
+                                        <label class="text-black" for="job">Your public profile:</label>
+                                        <a href="{{route('user_public_profile')}}" class="btn btn-outline-warning text-black  ">Your public profile</a>
+
+                                    </div>
+                                </div>
+
                             <div class="row form-group">
                                 <div class="col-md-12 mb-6 mb-md-0">
                                     <label class="text-black" for="phone">Phone Number:</label>
@@ -93,19 +110,11 @@
                             </div>
                             @endif
 
-                        <div class="row form-group">
-                            <div class="col-md-12 mb-6 mb-md-0">
-                                <label class="text-black" for="note">Notes:</label>
-                                <textarea  id="note" name="note" class="form-control" required>Add your notes here..</textarea>
-                                <script>
-                                    CKEDITOR.replace('note');
-                                </script>
-                            </div>
-                        </div>
+
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="Create" class="btn btn-primary btn-md text-white">
+                                <input type="submit" value="Submit" class="btn btn-primary btn-md text-white">
                             </div>
                         </div>
 

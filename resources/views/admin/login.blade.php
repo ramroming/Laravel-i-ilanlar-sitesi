@@ -9,7 +9,7 @@
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template">
     <meta name="description" content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Admin Panel</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets')}}/admin/assets/images/favicon.png">
     <!-- Custom CSS -->
@@ -45,6 +45,7 @@
                 <div class="text-center pt-3 pb-3">
                     <span class="db"><img src="{{asset('assets')}}/admin/assets/images/logo.png" alt="logo" /></span>
                 </div>
+                @include('home.message')
                 <!-- Form -->
                 <form class="form-horizontal mt-3" id="loginform" action="{{route('adminLoginCheck')}}" method="post" >
                     @csrf

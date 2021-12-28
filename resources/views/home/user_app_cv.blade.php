@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
-@section('title', 'My Cv')
+@foreach($datalist as $data)
+@section('title', $data->user->name.' Cv')
 
 @section('content')
 
@@ -9,10 +10,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1 class="text-white display-6 font-weight-bold">My Cv</h1>
+                    <h1 class="text-white display-6 font-weight-bold">{{$data->user->name}}'s Cv</h1>
                     <div class="custom-breadcrumbs display-7">
                         <a href="{{route('home')}}">Home</a> <span class="mx-2 slash">/</span>
-                        <span class="text-white"><strong>My Cv</strong></span>
+                        <a href="{{route('user_received_applications')}}">Received Applications</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>Candidate's Cv</strong></span>
                     </div>
                 </div>
             </div>
@@ -26,9 +28,9 @@
                @include('home._user-control-panel')
                 <div class="col-lg-10">
 
-                    @foreach($datalist as $data)
+
                     <div class="row">
-                        @include('home.message')
+
                         <div class="col-lg-8">
                             <div class="mb-5">
                                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Professional Title</h3>
@@ -44,14 +46,12 @@
                                 </ul>
                             </div>
 
-                            @if(!empty($data->skills))
                             <div class="mb-5">
                                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Skills</h3>
                                 <ul class="list-unstyled m-0 p-0">
                                     <li class="d-flex align-items-start mb-2"><span>{!! $data->skills !!}</span></li>
                                 </ul>
                             </div>
-                                @endif
 
 
                         </div>
@@ -65,18 +65,20 @@
                                     <li class="mb-2"><strong class="text-black">Published on:</strong> {{$data->created_at}}</li>
                                     <li class="mb-2"><strong class="text-black">Location:</strong> {{$data->location}}</li>
                                     @if(!empty($data->minimum_rate))
-                                    <li class="mb-2"><strong class="text-black">Minimum Rate:</strong> {{$data->minimum_rate}}</li>
-                                        @endif
+                                        <li class="mb-2"><strong class="text-black">Minimum Rate:</strong> {{$data->minimum_rate}}</li>
+                                    @endif
                                 </ul>
                             </div>
 
-
+                            @if($data->user->id == Auth::user()->id)
                             <div class="row">
                                 <div class="text-center mb-2 "><a class="btn btn-primary " href="{{route('user_cv_edit',['id' => $data -> id])}}">Edit
                                         Cv</a></div>
                                 <div class="text-center mb-2 "><a class="btn btn-primary " href="{{route('user_cv_delete',['id' => $data -> id])}}">Delete
                                         Cv</a></div>
                             </div>
+                                @endif
+
 
 
                         </div>

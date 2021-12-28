@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title','Edit Application')
+@section('title','Your Application')
 
 @section('javascript')
     {{--    ck editor for the text area --}}
@@ -18,21 +18,21 @@
         <div class="container">
             <div class="row ">
                 <div class="col-lg-12 mb-5 mb-lg-0 ">
-                    <form action="{{route('user_application_update',['id'=>$data->id])}}" method="post" class="card p-5 align-items-center ">
+                    <form class="card p-5 align-items-center ">
                         @csrf
                         <div class="row form-group">
-                            <h2 class="my-font text-secondary font-weight-bold">Update your application:</h2>
+                            <h2 class="my-font text-secondary font-weight-bold">View your application:</h2>
                         </div>
-                        @include('home.message')
+
 
                         <div class="row form-group">
-                            <h3 class="  my-font text-secondary ">You are now updating your application to the
+                            <h3 class="  my-font text-secondary ">You are now viewing your submitted application to the
                                 <span class="text-primary font-weight-bold">{{$data->job->title}}</span> job <i class="fa fa-briefcase"></i></h3>
                         </div>
 
                         <div class="row form-group">
-                          <p class="text-success text-center">Don't worry about sending your cv! if you have already created one, the applicant will easily find it <i class="fa fa-check"></i></p>
-                            <p class="text-success text-center">Just write the notes you would like to send to the employer..</p>
+                          <p class="text-success text-center">Don't worry about sending your cv! if you have already created one, the employer will easily find it <i class="fa fa-check"></i></p>
+                            <p class="text-success text-center">The employer will also be able to contact and view your personal info if you have created a public profile!..</p>
                         </div>
 
 
@@ -72,6 +72,19 @@
                                            value="{{Auth::user()->cv->title}}" readonly/>
                                 </div>
                             </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12 mb-6 mb-md-0">
+                                    <p class="text-secondary my-font text-center"> Your cv will be visible to the employers,
+                                        make sure it's complete and feel free to modify it if needed</p>
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <a href="{{route('show_application_cv',['id' => Auth::user()->cv->id])}}" class="btn btn-outline-warning text-black  ">Your Cv</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
 
 
@@ -84,6 +97,21 @@
                         </div>
 
                         @if(!empty(Auth::user()->profile->phone_number))
+
+                            <div class="row form-group">
+                                <div class="col-md-12 mb-6 mb-md-0">
+                                    <p class="text-secondary text-center my-font"> Your public profile will be visible to the employers,
+                                        make sure it has the correct information and feel free to modify it if needed</p>
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <a href="{{route('user_public_profile')}}" class="btn btn-outline-warning text-black  ">Your public profile</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                             <div class="row form-group">
                                 <div class="col-md-12 mb-6 mb-md-0">
                                     <label class="text-black" for="phone">Phone Number:</label>
@@ -96,7 +124,7 @@
                         <div class="row form-group">
                             <div class="col-md-12 mb-6 mb-md-0">
                                 <label class="text-black" for="note">Notes:</label>
-                                <textarea  id="note" name="note" class="form-control" required>{!! $data->note !!}</textarea>
+                                <textarea  id="note" name="note" class="form-control" readonly>{!! $data->note !!}</textarea>
                                 <script>
                                     CKEDITOR.replace('note');
                                 </script>
